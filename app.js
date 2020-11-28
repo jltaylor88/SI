@@ -85,7 +85,7 @@ function init() {
 
     // Create and draw initial blank grid
     baseGrid();
-    grid.draw();
+   
 
     // Impose shooter on base grid and redraw grid
     shooter.impose();
@@ -101,15 +101,20 @@ const shooterGap = 2;
 const shooterColStart = (columns/2) - (shooterCols-1)/2 + 1;
 const shooterRowStart = (rows - shooterRows - shooterGap); 
 const shooterColor = SIGreen;
-const shooterColStep = 2;
+const shooterColStep = 4;
 const shotColor = SIWhite;
 let shooter = new Shooter(shooterColStart, shooterRowStart, shooterCols, shooterRows, shooterColor, grid);
 
 
 
 // CREATE INVADERS AND PUSH TO ARRAY
-let invader = new Invader();
-invaders.push(invader);
+let squids = [];
+let squid = new Squid(20, 20);
+squids.push(squid);
+
+let crabs = [];
+let crab = new Crab(20, 40);
+crabs.push(crab);
 
 function animate() {
     requestAnimationFrame(animate);
@@ -122,8 +127,11 @@ function animate() {
     for (let i = 0; i < shots.length ; i++) {
         shots[i].update();
     }
-    for (let i = 0; i < invaders.length; i++) {
-        invaders[i].impose();
+    for (let i = 0; i < squids.length; i++) {
+        squids[i].impose();
+    }
+    for (let i = 0; i < crabs.length ; i++) {
+        crabs[i].impose();
     }
     
     grid.draw();
@@ -190,7 +198,7 @@ function Shot(shooterX, shooterY, shooterColumns, shotColor, grid) {
     this.y =shooterY,
     this.columns = shooterColumns,
     this.shotColor = shotColor,
-    this.dy = 3,
+    this.dy = 5,
     this.bullet = function() {
         grid[`row${this.y}`][`column${this.x}`].color = this.shotColor;
     }
@@ -341,9 +349,266 @@ function shield(x, y) {
     grid[`row${y - shieldHeight/2 + 2}`][`column${x + shieldWidth/2 + 5}`].color = shieldColor;
 
     grid[`row${y - shieldHeight/2 + 3}`][`column${x + shieldWidth/2 - 5}`].color = shieldColor;
-    grid[`row${y - shieldHeight/2 + 3}`][`column${x + shieldWidth/2 + 5}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2 + 3}`][`column${x + shieldWidth/2 + 5}`].color = shieldColor;    
+}
 
 
+// SQUID
+// x, y represents the left pixel of the top middle of each squid
+function Squid(x, y) {
+    this.x = x,
+    this.y = y,
+    this.ident = "typeTwo",
+    this.count = 0;
+    this.typeOne = function() {
+        grid[`row${this.y + 1}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y + 1}`][`column${this.x+1 }`].color = SIWhite;
 
+        grid[`row${this.y+2}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x+2}`].color = SIWhite;
+
+        grid[`row${this.y + 3}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y + 3}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y + 3}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y + 3}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y + 3}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y + 3}`][`column${this.x+3}`].color = SIWhite;
+
+        grid[`row${this.y + 4}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y + 4}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y + 4}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y + 4}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y + 4}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y + 4}`][`column${this.x+4}`].color = SIWhite;
+
+        grid[`row${this.y + 5}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x+4}`].color = SIWhite;
+
+        
+        grid[`row${this.y + 6}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y + 6}`][`column${this.x+2}`].color = SIWhite;
+
+        grid[`row${this.y + 7}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y + 7}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y + 7}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y + 7}`][`column${this.x+3}`].color = SIWhite;
+
+        grid[`row${this.y + 8}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y + 8}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y + 8}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y + 8}`][`column${this.x+4}`].color = SIWhite;
+    }
+
+    this.typeTwo = function() {
+        grid[`row${this.y + 1}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y + 1}`][`column${this.x+1 }`].color = SIWhite;
+
+        grid[`row${this.y+2}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x+2}`].color = SIWhite;
+
+        grid[`row${this.y + 3}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y + 3}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y + 3}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y + 3}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y + 3}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y + 3}`][`column${this.x+3}`].color = SIWhite;
+
+        grid[`row${this.y + 4}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y + 4}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y + 4}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y + 4}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y + 4}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y + 4}`][`column${this.x+4}`].color = SIWhite;
+
+        grid[`row${this.y + 5}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x+4}`].color = SIWhite;
+
+        grid[`row${this.y + 6}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y + 6}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y + 6}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y + 6}`][`column${this.x+3}`].color = SIWhite;
+
+        grid[`row${this.y + 7}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y + 7}`][`column${this.x+4}`].color = SIWhite;
+        
+        grid[`row${this.y + 8}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y + 8}`][`column${this.x+3}`].color = SIWhite;
+    }
+
+    this.impose = function() {
+        if (this.count % 10 == 0 && this.count != 0) {
+            switch (this.ident) {
+                case "typeOne":
+                    this.ident = "typeTwo";
+                    break;
+                case "typeTwo":
+                    this.ident = "typeOne";
+                    break;
+            }
+        }
+        this[`${this.ident}`]();
+        this.count++;
+    }
+}
+
+
+// CRAB
+// x, y represents the pixel at top middle
+function Crab(x,y) {
+    this.x = x,
+    this.y = y,
+    this.ident = "typeOne",
+    this.count = 0;
+    this.typeOne = function() {        
+
+        grid[`row${this.y-2}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y-2}`][`column${this.x+3}`].color = SIWhite;
+        
+        grid[`row${this.y-1}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y-1}`][`column${this.x+2}`].color = SIWhite;
+
+
+        grid[`row${this.y}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x+3}`].color = SIWhite;
+
+        grid[`row${this.y+1}`][`column${this.x-4}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x+4}`].color = SIWhite;
+
+        grid[`row${this.y+2}`][`column${this.x-5}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x-4}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x+4}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x+5}`].color = SIWhite;
+
+        grid[`row${this.y+3}`][`column${this.x-5}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x+5}`].color = SIWhite;
+
+        grid[`row${this.y+4}`][`column${this.x-5}`].color = SIWhite;
+        grid[`row${this.y+4}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y+4}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y+4}`][`column${this.x+5}`].color = SIWhite;
+
+        grid[`row${this.y+5}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y+5}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y+5}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y+5}`][`column${this.x+2}`].color = SIWhite;
+    }
+
+    this.typeTwo = function() {
+        grid[`row${this.y-2}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y-2}`][`column${this.x+3}`].color = SIWhite;
+        
+        grid[`row${this.y-1}`][`column${this.x-5}`].color = SIWhite;
+        grid[`row${this.y-1}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y-1}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y-1}`][`column${this.x+5}`].color = SIWhite;
+
+
+        grid[`row${this.y}`][`column${this.x-5}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x+5}`].color = SIWhite;
+
+
+        grid[`row${this.y+1}`][`column${this.x-5}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x-4}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x+4}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x+5}`].color = SIWhite;
+
+        grid[`row${this.y+2}`][`column${this.x-5}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x-4}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x+4}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x+5}`].color = SIWhite;
+
+        grid[`row${this.y+3}`][`column${this.x-4}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x-2}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x-1}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x+1}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x+4}`].color = SIWhite;
+
+     
+        grid[`row${this.y+4}`][`column${this.x-3}`].color = SIWhite;
+        grid[`row${this.y+4}`][`column${this.x+3}`].color = SIWhite;
+    
+
+        grid[`row${this.y+5}`][`column${this.x-4}`].color = SIWhite;
+        grid[`row${this.y+5}`][`column${this.x+4}`].color = SIWhite;
+    }
+
+
+    this.impose = function() {
+        if (this.count % 10 == 0 && this.count != 0) {
+            switch (this.ident) {
+                case "typeOne":
+                    this.ident = "typeTwo";
+                    break;
+                case "typeTwo":
+                    this.ident = "typeOne";
+                    break;
+            }
+        }
+        this[`${this.ident}`]();
+        this.count++;
+    }
     
 }

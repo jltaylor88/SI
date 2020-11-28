@@ -30,10 +30,19 @@ let invaders = [];
 // SHIELD VARS
 const shieldColor = "yellow";
 // Even width
-const shieldWidth = 16;
+const shieldWidth = 22;
 // Even height
-const shieldHeight = 10;
-const shieldTop = 25;
+const shieldHeight = 18;
+
+// Shield bottom
+const bottomGap = 30;
+const shieldBottom = rows - bottomGap;
+
+// Shield Lefts
+const shieldOneLeft = 20;
+const shieldTwoLeft = shieldOneLeft + shieldWidth + 24;
+const shieldThreeLeft = shieldTwoLeft + shieldWidth + 24;
+const shieldFourLeft = shieldThreeLeft + shieldWidth + 24;
 
 // SETUP OF BASE GRID
 function baseGrid() {
@@ -48,33 +57,12 @@ function baseGrid() {
         }
     }
 
-    // Shield One
-    for (let row = rows- shieldTop; row < rows-shieldTop + shieldHeight; row++) {
-        for (let column = 5; column < 5 +shieldWidth; column++) {
-            grid[`row${row}`][`column${column}`].color = shieldColor;
-        }
-    }
+    // IMPOSE SHIELDS
+    shield(shieldOneLeft, shieldBottom);
+    shield(shieldTwoLeft, shieldBottom);
+    shield(shieldThreeLeft, shieldBottom);
+    shield(shieldFourLeft, shieldBottom);
 
-    // Shield Two
-    for (let row = rows- shieldTop; row < rows-shieldTop + shieldHeight; row++) {
-        for (let column = 30; column < 30 +shieldWidth; column++) {
-            grid[`row${row}`][`column${column}`].color = shieldColor;
-        }
-    }
-
-    // Shield Three
-    for (let row = rows- shieldTop; row < rows-shieldTop + shieldHeight; row++) {
-        for (let column = 55; column < 55 +shieldWidth; column++) {
-            grid[`row${row}`][`column${column}`].color = shieldColor;
-        }
-    }
-
-    // Shield Four
-    for (let row = rows- shieldTop; row < rows-shieldTop + shieldHeight; row++) {
-        for (let column = 80; column < 80 +shieldWidth; column++) {
-            grid[`row${row}`][`column${column}`].color = shieldColor;
-        }
-    }
 }
 
 // FUNCTION THAT DRAWS THE GRID
@@ -193,7 +181,7 @@ function Shot(shooterX, shooterY, shooterColumns, shotColor, grid) {
         if (grid[`row${this.y - this.dy}`][`column${this.x}`].color == "yellow") {
             collision = new Collision(this.x, this.y, grid);
             collisions.push(collision);
-            shots.splice(shots.indexOf(this)); 
+            shots.splice(shots.indexOf(this), 1); 
         } else {
             if (this.y - this.dy > 0) {
                 this.y -= this.dy;
@@ -248,4 +236,94 @@ function shoot(e) {
         shot.update();
         shots.push(shot);
     }
+}
+
+
+//SHIELDS
+// x, y represent the bottom left of each shield 
+function shield(x, y) {
+    // Left column (leave three pixels at top)
+    for (let row = y; row > y - shieldHeight + 3; row--) {
+        for (let column =x; column < x + shieldWidth/4; column++) {
+            grid[`row${row}`][`column${column}`].color = shieldColor;
+        }
+    }
+
+    // Top left step
+    grid[`row${y - shieldHeight + 3}`][`column${x + 1}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 3}`][`column${x + 2}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 3}`][`column${x + 3}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 3}`][`column${x + 4}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 3}`][`column${x + 5}`].color = shieldColor;
+
+    grid[`row${y - shieldHeight + 2}`][`column${x + 2}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 2}`][`column${x + 3}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 2}`][`column${x + 4}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 2}`][`column${x + 5}`].color = shieldColor;
+
+    grid[`row${y - shieldHeight + 1}`][`column${x +3}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 1}`][`column${x +4}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 1}`][`column${x +5}`].color = shieldColor;
+
+    // Top middle column
+    for (let row  = y - shieldHeight/2-1; row > y - shieldHeight; row--) {
+        for (let column = x + 6 ; column < x + shieldWidth - 5; column++) {
+            grid[`row${row}`][`column${column}`].color = shieldColor;
+        }
+    }
+
+    // Right column (leave three pixels at top)
+    for (let row = y; row > y - shieldHeight + 3; row--) {
+        for (let column = x + shieldWidth - 5; column < x + shieldWidth-5 +shieldWidth/4; column++) {
+            grid[`row${row}`][`column${column}`].color = shieldColor;
+        }
+    }
+
+    // Top right step
+    grid[`row${y - shieldHeight + 3}`][`column${x + shieldWidth - 1}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 3}`][`column${x + shieldWidth - 2}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 3}`][`column${x + shieldWidth - 3}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 3}`][`column${x + shieldWidth - 4}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 3}`][`column${x + shieldWidth - 5}`].color = shieldColor;
+
+    grid[`row${y - shieldHeight + 2}`][`column${x + shieldWidth - 2}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 2}`][`column${x + shieldWidth - 3}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 2}`][`column${x + shieldWidth - 4}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 2}`][`column${x + shieldWidth - 5}`].color = shieldColor;
+
+    grid[`row${y - shieldHeight + 1}`][`column${x + shieldWidth - 3}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 1}`][`column${x + shieldWidth - 4}`].color = shieldColor;
+    grid[`row${y - shieldHeight + 1}`][`column${x + shieldWidth - 5}`].color = shieldColor;
+
+
+    // Inside left diagonal
+    grid[`row${y - shieldHeight/2}`][`column${x + shieldWidth/2 - 2}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2}`][`column${x + shieldWidth/2 - 3}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2}`][`column${x + shieldWidth/2 - 4}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2}`][`column${x + shieldWidth/2 - 5}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2}`][`column${x + shieldWidth/2 + 2}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2}`][`column${x + shieldWidth/2 + 3}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2}`][`column${x + shieldWidth/2 + 4}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2}`][`column${x + shieldWidth/2 + 5}`].color = shieldColor;
+
+    ;
+    grid[`row${y - shieldHeight/2 + 1}`][`column${x + shieldWidth/2 - 3}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2 + 1}`][`column${x + shieldWidth/2 - 4}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2 + 1}`][`column${x + shieldWidth/2 - 5}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2 + 1}`][`column${x + shieldWidth/2 + 3}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2 + 1}`][`column${x + shieldWidth/2 + 4}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2 + 1}`][`column${x + shieldWidth/2 + 5}`].color = shieldColor;
+
+    
+    grid[`row${y - shieldHeight/2 + 2}`][`column${x + shieldWidth/2 - 4}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2 + 2}`][`column${x + shieldWidth/2 - 5}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2 + 2}`][`column${x + shieldWidth/2 + 4}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2 + 2}`][`column${x + shieldWidth/2 + 5}`].color = shieldColor;
+
+    grid[`row${y - shieldHeight/2 + 3}`][`column${x + shieldWidth/2 - 5}`].color = shieldColor;
+    grid[`row${y - shieldHeight/2 + 3}`][`column${x + shieldWidth/2 + 5}`].color = shieldColor;
+
+
+
+    
 }

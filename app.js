@@ -17,6 +17,8 @@ const actPixel = pixel - gap;
 const columns = canvas.width/pixel;
 const rows = canvas.height/pixel;
 const baseColor = "black";
+const SIGreen = "#33ff00";
+const SIWhite = "#ffffff";
 
 // ARRAY OF COLLISION OBJECTS
 let collisions =[];
@@ -28,7 +30,7 @@ let shots =[];
 let invaders = [];
 
 // SHIELD VARS
-const shieldColor = "yellow";
+const shieldColor = SIGreen;
 // Even width
 const shieldWidth = 22;
 // Even height
@@ -92,14 +94,15 @@ function init() {
 
 
 // Initial shooter definition
-const shooterCols = 11;
-const shooterRows = 5;
+// ODD NUMBER
+const shooterCols = 15;
+const shooterRows = 4;
 const shooterGap = 2;
-const shooterColStart = (columns/2) - (shooterCols-1)/2;
+const shooterColStart = (columns/2) - (shooterCols-1)/2 + 1;
 const shooterRowStart = (rows - shooterRows - shooterGap); 
-const shooterColor = "yellow";
-const shooterColStep = 1;
-const shotColor = "red";
+const shooterColor = SIGreen;
+const shooterColStep = 2;
+const shotColor = SIWhite;
 let shooter = new Shooter(shooterColStart, shooterRowStart, shooterCols, shooterRows, shooterColor, grid);
 
 
@@ -139,11 +142,28 @@ function Shooter(leftColumn, topRow, shooterColumns, shooterRows, color, grid) {
     this.color = color,
     this.dx = shooterColStep,
     this.impose = function() {
+        // Base rectangle of shooter
         for (let row = this.y; row < this.y + this.rows; row++) {
             for (let column = this.x; column < this.x + this.columns ; column++) {
                 grid[`row${row}`][`column${column}`].color = this.color;
             }
         }
+        // Middle row of shooter
+        for (let column = this.x + 1 ; column < this.x + this.columns-1; column++) {
+            grid[`row${this.y - 1}`][`column${column}`].color = this.color;
+        }
+        // Wide middle aperture
+        grid[`row${this.y - 2}`][`column${this.x + (this.columns-1)/2 - 1}`].color = this.color;
+        grid[`row${this.y - 2}`][`column${this.x + (this.columns-1)/2}`].color = this.color;
+        grid[`row${this.y - 2}`][`column${this.x + (this.columns-1)/2 + 1}`].color = this.color;
+        grid[`row${this.y - 3}`][`column${this.x + (this.columns-1)/2 - 1}`].color = this.color;
+        grid[`row${this.y - 3}`][`column${this.x + (this.columns-1)/2}`].color = this.color;
+        grid[`row${this.y - 3}`][`column${this.x + (this.columns-1)/2 + 1}`].color = this.color;
+
+        // Aperture
+        grid[`row${this.y - 4}`][`column${this.x + (this.columns-1)/2}`].color = this.color;
+
+
     }
 
     this.moveLeft = function() {
@@ -170,7 +190,7 @@ function Shot(shooterX, shooterY, shooterColumns, shotColor, grid) {
     this.y =shooterY,
     this.columns = shooterColumns,
     this.shotColor = shotColor,
-    this.dy = 1,
+    this.dy = 3,
     this.bullet = function() {
         grid[`row${this.y}`][`column${this.x}`].color = this.shotColor;
     }
@@ -178,7 +198,7 @@ function Shot(shooterX, shooterY, shooterColumns, shotColor, grid) {
         this.bullet();
 
         // Check to see if next pixel up contains a shield
-        if (grid[`row${this.y - this.dy}`][`column${this.x}`].color == "yellow") {
+        if (grid[`row${this.y - this.dy}`][`column${this.x}`].color == SIGreen) {
             collision = new Collision(this.x, this.y, grid);
             collisions.push(collision);
             shots.splice(shots.indexOf(this), 1); 
@@ -209,7 +229,7 @@ function Invader() {
     this.impose = function() {
         for (let row = 10; row < 20; row++) {
             for (let column = 20; column < 40; column++) {
-                grid[`row${row}`][`column${column}`].color = "white";
+                grid[`row${row}`][`column${column}`].color = SIWhite;
             }
         }
     }
@@ -232,7 +252,7 @@ function shooterMoveRight(e) {
 
 function shoot(e) {
     if (e.code == "Space") {
-        shot = new Shot(shooter.x, shooter.y, shooter.columns, shotColor, grid);
+        shot = new Shot(shooter.x , shooter.y-4, shooter.columns, shotColor, grid);
         shot.update();
         shots.push(shot);
     }

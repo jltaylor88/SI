@@ -988,4 +988,30 @@ function findInvader(invader) {
         const squidIndex = locator.indexOf(1);
         squids.splice(squidIndex, 1, new Empty());
     }
+
+    if (invader.includes("crab")) {
+        const locator = [];
+        crabs.forEach((entry)=> {
+            if (entry.invader == invader) {
+                locator.push(1);
+            } else {
+                locator.push(0);
+            }
+        })
+        const crabIndex = locator.indexOf(1);
+        crabs.splice(crabIndex, 1, new Empty());
+    }
+
+    if (invader.includes("octopus")) {
+        const locator = [];
+        octopi.forEach((entry)=> {
+            if (entry.invader == invader) {
+                locator.push(1);
+            } else {
+                locator.push(0);
+            }
+        })
+        const octopusIndex = locator.indexOf(1);
+        octopi.splice(octopusIndex, 1, new Empty());
+    }
 }

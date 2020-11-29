@@ -53,6 +53,7 @@ function baseGrid() {
         for (let column = 0; column < columns; column++) {
             grid[`row${row}`][`column${column}`] = {
                 color: baseColor,
+                invader : "none",
                 top: row*pixel,
                 left: column*pixel,
             };
@@ -115,7 +116,7 @@ for (let j = 0; j < 1; j++) {
         squids.push(squid);
     }
 }
-findInvader(squids);
+
 
 let crabs = [];
 for (let j = 0; j < 2; j++) {
@@ -145,12 +146,6 @@ function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     baseGrid();
     shooter.impose();
-    for (let i = 0; i < collisions.length; i++) {
-        collisions[i].impose(); 
-    }
-    for (let i = 0; i < shots.length ; i++) {
-        shots[i].update();
-    }
     for (let i = 0; i < squids.length; i++) {
         squids[i].impose();
     }
@@ -162,6 +157,12 @@ function animate() {
     }
     for (let i =0; i < ufos.length; i++) {
         ufos[i].impose();
+    }
+    for (let i = 0; i < collisions.length; i++) {
+        collisions[i].impose(); 
+    }
+    for (let i = 0; i < shots.length ; i++) {
+        shots[i].update();
     }
     grid.draw();
 }
@@ -239,6 +240,9 @@ function Shot(shooterX, shooterY, shooterColumns, shotColor, grid) {
             collision = new Collision(this.x, this.y, grid);
             collisions.push(collision);
             shots.splice(shots.indexOf(this), 1); 
+        } else if (grid[`row${this.y - this.dy}`][`column${this.x}`].invader != "none") {
+            findInvader();
+            shots.splice(shots.indexOf(this), 1); 
         } else {
             if (this.y - this.dy > 0) {
                 this.y -= this.dy;
@@ -246,6 +250,8 @@ function Shot(shooterX, shooterY, shooterColumns, shotColor, grid) {
                 shots.splice(shots.indexOf(this), 1);
             } 
         }
+
+         
     }
 }
 
@@ -964,6 +970,6 @@ function UFO(x,y) {
 }
 
 // Find an invader
-function findInvader(x, y, z) {
-    console.log(x[4]);
+function findInvader() {
+    console.log("Finding Invader");
 }

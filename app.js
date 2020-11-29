@@ -1112,6 +1112,7 @@ function UFO(x,y) {
     this.y = y,
     this.count = 0,
     this.color = "red",
+    this.invader = "ufo",
     this.typeOne = function() {
         grid[`row${this.y}`][`column${this.x-2}`].color = this.color;
         grid[`row${this.y}`][`column${this.x-1}`].color = this.color;
@@ -1119,6 +1120,12 @@ function UFO(x,y) {
         grid[`row${this.y}`][`column${this.x+1}`].color = this.color;
         grid[`row${this.y}`][`column${this.x+2}`].color = this.color;
         grid[`row${this.y}`][`column${this.x+3}`].color = this.color;
+        grid[`row${this.y}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y}`][`column${this.x+3}`].invader = this.invader;
 
         grid[`row${this.y+1}`][`column${this.x-4}`].color = this.color;
         grid[`row${this.y+1}`][`column${this.x-3}`].color = this.color;
@@ -1130,6 +1137,16 @@ function UFO(x,y) {
         grid[`row${this.y+1}`][`column${this.x+3}`].color = this.color;
         grid[`row${this.y+1}`][`column${this.x+4}`].color = this.color;
         grid[`row${this.y+1}`][`column${this.x+5}`].color = this.color;
+        grid[`row${this.y+1}`][`column${this.x-4}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x+4}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x+5}`].invader = this.invader;
 
         grid[`row${this.y+2}`][`column${this.x-5}`].color = this.color;
         grid[`row${this.y+2}`][`column${this.x-4}`].color = this.color;
@@ -1143,6 +1160,18 @@ function UFO(x,y) {
         grid[`row${this.y+2}`][`column${this.x+4}`].color = this.color;
         grid[`row${this.y+2}`][`column${this.x+5}`].color = this.color;
         grid[`row${this.y+2}`][`column${this.x+6}`].color = this.color;
+        grid[`row${this.y+2}`][`column${this.x-5}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x-4}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+4}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+5}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+6}`].invader = this.invader;
 
         grid[`row${this.y+3}`][`column${this.x-6}`].color = this.color;
         grid[`row${this.y+3}`][`column${this.x-5}`].color = this.color;
@@ -1154,6 +1183,16 @@ function UFO(x,y) {
         grid[`row${this.y+3}`][`column${this.x+4}`].color = this.color;;
         grid[`row${this.y+3}`][`column${this.x+6}`].color = this.color;
         grid[`row${this.y+3}`][`column${this.x+7}`].color = this.color;
+        grid[`row${this.y+3}`][`column${this.x-6}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x-5}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x+4}`].invader = this.invader;;
+        grid[`row${this.y+3}`][`column${this.x+6}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x+7}`].invader = this.invader;
 
         grid[`row${this.y+4}`][`column${this.x-7}`].color = this.color;
         grid[`row${this.y+4}`][`column${this.x-6}`].color = this.color;
@@ -1171,6 +1210,22 @@ function UFO(x,y) {
         grid[`row${this.y+4}`][`column${this.x+6}`].color = this.color;
         grid[`row${this.y+4}`][`column${this.x+7}`].color = this.color;
         grid[`row${this.y+4}`][`column${this.x+8}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x-7}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x-6}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x-5}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x-4}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+4}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+5}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+6}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+7}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+8}`].invader = this.invader;
 
         grid[`row${this.y+5}`][`column${this.x-5}`].color = this.color;
         grid[`row${this.y+5}`][`column${this.x-4}`].color = this.color;
@@ -1180,9 +1235,19 @@ function UFO(x,y) {
         grid[`row${this.y+5}`][`column${this.x+4}`].color = this.color;
         grid[`row${this.y+5}`][`column${this.x+5}`].color = this.color;
         grid[`row${this.y+5}`][`column${this.x+6}`].color = this.color;
+        grid[`row${this.y+5}`][`column${this.x-5}`].invader = this.invader;
+        grid[`row${this.y+5}`][`column${this.x-4}`].invader = this.invader;
+        grid[`row${this.y+5}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+5}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+5}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+5}`][`column${this.x+4}`].invader = this.invader;
+        grid[`row${this.y+5}`][`column${this.x+5}`].invader = this.invader;
+        grid[`row${this.y+5}`][`column${this.x+6}`].invader = this.invader;
 
         grid[`row${this.y+6}`][`column${this.x-4}`].color = this.color;
         grid[`row${this.y+6}`][`column${this.x+5}`].color = this.color;
+        grid[`row${this.y+6}`][`column${this.x-4}`].invader = this.invader;
+        grid[`row${this.y+6}`][`column${this.x+5}`].invader = this.invader;
 
 
     }

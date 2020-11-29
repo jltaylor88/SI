@@ -120,6 +120,10 @@ let octopi = [];
 let octopus = new Octopus(20, 60);
 octopi.push(octopus);
 
+let ufos = [];
+let ufo = new UFO(20, 80);
+ufos.push(ufo);
+
 function animate() {
     requestAnimationFrame(animate);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -140,7 +144,9 @@ function animate() {
     for (let i = 0; i < octopi.length; i++) {
         octopi[i].impose();
     }
-    
+    for (let i =0; i < ufos.length; i++) {
+        ufos[i].impose();
+    }
     grid.draw();
 }
 
@@ -249,6 +255,7 @@ function Invader() {
         }
     }
 }
+
 
 // SHOOTER MOVEMENT FUNCTIONS 
 function shooterMoveLeft(e) {
@@ -785,5 +792,89 @@ function Octopus(x, y) {
         }
         this[`${this.ident}`]();
         this.count++;
+    }
+}
+// x,y represents the top left middle pixel
+function UFO(x,y) {
+    this.x = x,
+    this.y = y,
+    this.count = 0,
+    this.color = "red",
+    this.typeOne = function() {
+        grid[`row${this.y}`][`column${this.x-2}`].color = this.color;
+        grid[`row${this.y}`][`column${this.x-1}`].color = this.color;
+        grid[`row${this.y}`][`column${this.x}`].color = this.color;
+        grid[`row${this.y}`][`column${this.x+1}`].color = this.color;
+        grid[`row${this.y}`][`column${this.x+2}`].color = this.color;
+        grid[`row${this.y}`][`column${this.x+3}`].color = this.color;
+
+        grid[`row${this.y+1}`][`column${this.x-4}`].color = this.color;
+        grid[`row${this.y+1}`][`column${this.x-3}`].color = this.color;
+        grid[`row${this.y+1}`][`column${this.x-2}`].color = this.color;
+        grid[`row${this.y+1}`][`column${this.x-1}`].color = this.color;
+        grid[`row${this.y+1}`][`column${this.x}`].color = this.color;
+        grid[`row${this.y+1}`][`column${this.x+1}`].color = this.color;
+        grid[`row${this.y+1}`][`column${this.x+2}`].color = this.color;
+        grid[`row${this.y+1}`][`column${this.x+3}`].color = this.color;
+        grid[`row${this.y+1}`][`column${this.x+4}`].color = this.color;
+        grid[`row${this.y+1}`][`column${this.x+5}`].color = this.color;
+
+        grid[`row${this.y+2}`][`column${this.x-5}`].color = this.color;
+        grid[`row${this.y+2}`][`column${this.x-4}`].color = this.color;
+        grid[`row${this.y+2}`][`column${this.x-3}`].color = this.color;
+        grid[`row${this.y+2}`][`column${this.x-2}`].color = this.color;
+        grid[`row${this.y+2}`][`column${this.x-1}`].color = this.color;
+        grid[`row${this.y+2}`][`column${this.x}`].color = this.color;
+        grid[`row${this.y+2}`][`column${this.x+1}`].color = this.color;
+        grid[`row${this.y+2}`][`column${this.x+2}`].color = this.color;
+        grid[`row${this.y+2}`][`column${this.x+3}`].color = this.color;
+        grid[`row${this.y+2}`][`column${this.x+4}`].color = this.color;
+        grid[`row${this.y+2}`][`column${this.x+5}`].color = this.color;
+        grid[`row${this.y+2}`][`column${this.x+6}`].color = this.color;
+
+        grid[`row${this.y+3}`][`column${this.x-6}`].color = this.color;
+        grid[`row${this.y+3}`][`column${this.x-5}`].color = this.color;
+        grid[`row${this.y+3}`][`column${this.x-3}`].color = this.color;
+        grid[`row${this.y+3}`][`column${this.x-2}`].color = this.color;
+        grid[`row${this.y+3}`][`column${this.x}`].color = this.color;
+        grid[`row${this.y+3}`][`column${this.x+1}`].color = this.color;
+        grid[`row${this.y+3}`][`column${this.x+3}`].color = this.color;
+        grid[`row${this.y+3}`][`column${this.x+4}`].color = this.color;;
+        grid[`row${this.y+3}`][`column${this.x+6}`].color = this.color;
+        grid[`row${this.y+3}`][`column${this.x+7}`].color = this.color;
+
+        grid[`row${this.y+4}`][`column${this.x-7}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x-6}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x-5}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x-4}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x-3}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x-2}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x-1}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x+1}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x+2}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x+3}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x+4}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x+5}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x+6}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x+7}`].color = this.color;
+        grid[`row${this.y+4}`][`column${this.x+8}`].color = this.color;
+
+        grid[`row${this.y+5}`][`column${this.x-5}`].color = this.color;
+        grid[`row${this.y+5}`][`column${this.x-4}`].color = this.color;
+        grid[`row${this.y+5}`][`column${this.x-3}`].color = this.color;
+        grid[`row${this.y+5}`][`column${this.x}`].color = this.color;
+        grid[`row${this.y+5}`][`column${this.x+1}`].color = this.color;
+        grid[`row${this.y+5}`][`column${this.x+4}`].color = this.color;
+        grid[`row${this.y+5}`][`column${this.x+5}`].color = this.color;
+        grid[`row${this.y+5}`][`column${this.x+6}`].color = this.color;
+
+        grid[`row${this.y+6}`][`column${this.x-4}`].color = this.color;
+        grid[`row${this.y+6}`][`column${this.x+5}`].color = this.color;
+
+
+    }
+    this.impose = function() {
+        this.typeOne();
     }
 }

@@ -1276,7 +1276,7 @@ function findInvader(invader) {
         squids.splice(squidIndex, 1, new Empty());
     }
 
-    if (invader.includes("crab")) {
+    else if (invader.includes("crab")) {
         const locator = [];
         crabs.forEach((entry)=> {
             if (entry.invader == invader) {
@@ -1289,7 +1289,7 @@ function findInvader(invader) {
         crabs.splice(crabIndex, 1, new Empty());
     }
 
-    if (invader.includes("octopus")) {
+    else if (invader.includes("octopus")) {
         const locator = [];
         octopi.forEach((entry)=> {
             if (entry.invader == invader) {
@@ -1300,5 +1300,9 @@ function findInvader(invader) {
         })
         const octopusIndex = locator.indexOf(1);
         octopi.splice(octopusIndex, 1, new Empty());
+    }
+
+    else if (invader.includes("ufo")) {
+        ufos.splice(0, 1, new Empty());
     }
 }

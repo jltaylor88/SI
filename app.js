@@ -828,6 +828,10 @@ function Octopus(x, y, j, i) {
         grid[`row${this.y}`][`column${this.x}`].color = SIWhite;
         grid[`row${this.y}`][`column${this.x+1}`].color = SIWhite;
         grid[`row${this.y}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y}`][`column${this.x+2}`].invader = this.invader;
 
 
         grid[`row${this.y+1}`][`column${this.x-4}`].color = SIWhite;
@@ -840,6 +844,16 @@ function Octopus(x, y, j, i) {
         grid[`row${this.y+1}`][`column${this.x+3}`].color = SIWhite;
         grid[`row${this.y+1}`][`column${this.x+4}`].color = SIWhite;
         grid[`row${this.y+1}`][`column${this.x+5}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x-4}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x+4}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x+5}`].invader = this.invader;
   
 
         grid[`row${this.y+2}`][`column${this.x-5}`].color = SIWhite;
@@ -854,6 +868,18 @@ function Octopus(x, y, j, i) {
         grid[`row${this.y+2}`][`column${this.x+4}`].color = SIWhite;
         grid[`row${this.y+2}`][`column${this.x+5}`].color = SIWhite;
         grid[`row${this.y+2}`][`column${this.x+6}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x-5}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x-4}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+4}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+5}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+6}`].invader = this.invader;
 
     
         grid[`row${this.y+3}`][`column${this.x-5}`].color = SIWhite;
@@ -864,6 +890,14 @@ function Octopus(x, y, j, i) {
         grid[`row${this.y+3}`][`column${this.x+4}`].color = SIWhite;
         grid[`row${this.y+3}`][`column${this.x+5}`].color = SIWhite;
         grid[`row${this.y+3}`][`column${this.x+6}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x-5}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x-4}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x+4}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x+5}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x+6}`].invader = this.invader;
 
         grid[`row${this.y+4}`][`column${this.x-5}`].color = SIWhite;
         grid[`row${this.y+4}`][`column${this.x-4}`].color = SIWhite;
@@ -877,11 +911,27 @@ function Octopus(x, y, j, i) {
         grid[`row${this.y+4}`][`column${this.x+4}`].color = SIWhite;
         grid[`row${this.y+4}`][`column${this.x+5}`].color = SIWhite;
         grid[`row${this.y+4}`][`column${this.x+6}`].color = SIWhite;
+        grid[`row${this.y+4}`][`column${this.x-5}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x-4}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+4}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+5}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+6}`].invader = this.invader;
 
         grid[`row${this.y+5}`][`column${this.x-2}`].color = SIWhite;
         grid[`row${this.y+5}`][`column${this.x-1}`].color = SIWhite;
         grid[`row${this.y+5}`][`column${this.x+2}`].color = SIWhite;
         grid[`row${this.y+5}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y+5}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y+5}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y+5}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y+5}`][`column${this.x+3}`].invader = this.invader;
 
         grid[`row${this.y+6}`][`column${this.x-3}`].color = SIWhite;
         grid[`row${this.y+6}`][`column${this.x-2}`].color = SIWhite;
@@ -889,17 +939,31 @@ function Octopus(x, y, j, i) {
         grid[`row${this.y+6}`][`column${this.x+1}`].color = SIWhite;
         grid[`row${this.y+6}`][`column${this.x+3}`].color = SIWhite;
         grid[`row${this.y+6}`][`column${this.x+4}`].color = SIWhite;
+        grid[`row${this.y+6}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+6}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y+6}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+6}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+6}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y+6}`][`column${this.x+4}`].invader = this.invader;
 
         grid[`row${this.y+7}`][`column${this.x-5}`].color = SIWhite;
         grid[`row${this.y+7}`][`column${this.x-4}`].color = SIWhite;
         grid[`row${this.y+7}`][`column${this.x+5}`].color = SIWhite;
         grid[`row${this.y+7}`][`column${this.x+6}`].color = SIWhite;
+        grid[`row${this.y+7}`][`column${this.x-5}`].invader = this.invader;
+        grid[`row${this.y+7}`][`column${this.x-4}`].invader = this.invader;
+        grid[`row${this.y+7}`][`column${this.x+5}`].invader = this.invader;
+        grid[`row${this.y+7}`][`column${this.x+6}`].invader = this.invader;
     }
     this.typeTwo = function() {
         grid[`row${this.y}`][`column${this.x-1}`].color = SIWhite;
         grid[`row${this.y}`][`column${this.x}`].color = SIWhite;
         grid[`row${this.y}`][`column${this.x+1}`].color = SIWhite;
         grid[`row${this.y}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y}`][`column${this.x+2}`].invader = this.invader;
 
 
         grid[`row${this.y+1}`][`column${this.x-4}`].color = SIWhite;
@@ -912,6 +976,16 @@ function Octopus(x, y, j, i) {
         grid[`row${this.y+1}`][`column${this.x+3}`].color = SIWhite;
         grid[`row${this.y+1}`][`column${this.x+4}`].color = SIWhite;
         grid[`row${this.y+1}`][`column${this.x+5}`].color = SIWhite;
+        grid[`row${this.y+1}`][`column${this.x-4}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x+4}`].invader = this.invader;
+        grid[`row${this.y+1}`][`column${this.x+5}`].invader = this.invader;
   
 
         grid[`row${this.y+2}`][`column${this.x-5}`].color = SIWhite;
@@ -926,6 +1000,18 @@ function Octopus(x, y, j, i) {
         grid[`row${this.y+2}`][`column${this.x+4}`].color = SIWhite;
         grid[`row${this.y+2}`][`column${this.x+5}`].color = SIWhite;
         grid[`row${this.y+2}`][`column${this.x+6}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x-5}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x-4}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+4}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+5}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+6}`].invader = this.invader;
 
     
         grid[`row${this.y+3}`][`column${this.x-5}`].color = SIWhite;
@@ -936,6 +1022,14 @@ function Octopus(x, y, j, i) {
         grid[`row${this.y+3}`][`column${this.x+4}`].color = SIWhite;
         grid[`row${this.y+3}`][`column${this.x+5}`].color = SIWhite;
         grid[`row${this.y+3}`][`column${this.x+6}`].color = SIWhite;
+        grid[`row${this.y+3}`][`column${this.x-5}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x-4}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x+4}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x+5}`].invader = this.invader;
+        grid[`row${this.y+3}`][`column${this.x+6}`].invader = this.invader;
 
         grid[`row${this.y+4}`][`column${this.x-5}`].color = SIWhite;
         grid[`row${this.y+4}`][`column${this.x-4}`].color = SIWhite;
@@ -949,6 +1043,18 @@ function Octopus(x, y, j, i) {
         grid[`row${this.y+4}`][`column${this.x+4}`].color = SIWhite;
         grid[`row${this.y+4}`][`column${this.x+5}`].color = SIWhite;
         grid[`row${this.y+4}`][`column${this.x+6}`].color = SIWhite;
+        grid[`row${this.y+4}`][`column${this.x-5}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x-4}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+4}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+5}`].invader = this.invader;
+        grid[`row${this.y+4}`][`column${this.x+6}`].invader = this.invader;
 
         grid[`row${this.y+5}`][`column${this.x-3}`].color = SIWhite;
         grid[`row${this.y+5}`][`column${this.x-2}`].color = SIWhite;
@@ -956,6 +1062,12 @@ function Octopus(x, y, j, i) {
         grid[`row${this.y+5}`][`column${this.x+2}`].color = SIWhite;
         grid[`row${this.y+5}`][`column${this.x+3}`].color = SIWhite;
         grid[`row${this.y+5}`][`column${this.x+4}`].color = SIWhite;
+        grid[`row${this.y+5}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+5}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y+5}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y+5}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y+5}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y+5}`][`column${this.x+4}`].invader = this.invader;
 
         grid[`row${this.y+6}`][`column${this.x-4}`].color = SIWhite;
         grid[`row${this.y+6}`][`column${this.x-3}`].color = SIWhite;
@@ -963,11 +1075,21 @@ function Octopus(x, y, j, i) {
         grid[`row${this.y+6}`][`column${this.x+1}`].color = SIWhite;
         grid[`row${this.y+6}`][`column${this.x+4}`].color = SIWhite;
         grid[`row${this.y+6}`][`column${this.x+5}`].color = SIWhite;
+        grid[`row${this.y+6}`][`column${this.x-4}`].invader = this.invader;
+        grid[`row${this.y+6}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+6}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+6}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+6}`][`column${this.x+4}`].invader = this.invader;
+        grid[`row${this.y+6}`][`column${this.x+5}`].invader = this.invader;
 
         grid[`row${this.y+7}`][`column${this.x-3}`].color = SIWhite;
         grid[`row${this.y+7}`][`column${this.x-2}`].color = SIWhite;
         grid[`row${this.y+7}`][`column${this.x+3}`].color = SIWhite;
         grid[`row${this.y+7}`][`column${this.x+4}`].color = SIWhite;
+        grid[`row${this.y+7}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y+7}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y+7}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y+7}`][`column${this.x+4}`].invader = this.invader;
     }
     this.impose = function() {
         if (this.count % 10 == 0 && this.count != 0) {

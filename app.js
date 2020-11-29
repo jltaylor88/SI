@@ -241,7 +241,7 @@ function Shot(shooterX, shooterY, shooterColumns, shotColor, grid) {
             collisions.push(collision);
             shots.splice(shots.indexOf(this), 1); 
         } else if (grid[`row${this.y - this.dy}`][`column${this.x}`].invader != "none") {
-            findInvader();
+            findInvader(grid[`row${this.y - this.dy}`][`column${this.x}`].invader);
             shots.splice(shots.indexOf(this), 1); 
         } else {
             if (this.y - this.dy > 0) {
@@ -396,7 +396,7 @@ function Squid(x, y, j, i) {
     this.y = y,
     this.ident = "typeTwo",
     this.count = 0;
-    this.invader = `invader${j}${i}`,
+    this.invader = `squid${j}${i}`,
     this.typeOne = function() {
         grid[`row${this.y + 1}`][`column${this.x}`].color = SIWhite;
         grid[`row${this.y + 1}`][`column${this.x+1 }`].color = SIWhite;
@@ -969,7 +969,23 @@ function UFO(x,y) {
     }
 }
 
-// Find an invader
-function findInvader() {
-    console.log("Finding Invader");
+// EMPTY FUNCTION FOR DELETION OF INVADERS
+function Empty() {
+    this.impose = function() {}
+}
+
+// FIND AN INVADER
+function findInvader(invader) {
+    if (invader.includes("squid")) {
+        const locator = [];
+        squids.forEach((entry)=> {
+            if (entry.invader == invader) {
+                locator.push(1);
+            } else {
+                locator.push(0);
+            }
+        })
+        const squidIndex = locator.indexOf(1);
+        squids.splice(squidIndex, 1, new Empty());
+    }
 }

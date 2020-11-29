@@ -109,19 +109,35 @@ let shooter = new Shooter(shooterColStart, shooterRowStart, shooterCols, shooter
 
 // CREATE INVADERS AND PUSH TO ARRAY
 let squids = [];
-let squid = new Squid(20, 20);
-squids.push(squid);
+for (let j = 0; j < 1; j++) {
+    for (let i = 0; i < 11; i++) {
+        let squid = new Squid(20 + i*15, 20, j, i);
+        squids.push(squid);
+    }
+}
+findInvader(squids);
 
 let crabs = [];
-let crab = new Crab(20, 40);
-crabs.push(crab);
+for (let j = 0; j < 2; j++) {
+    for (let i = 0; i < 11; i++) {
+        let crab = new Crab(20 + i*15, 35 + j*12);
+        crabs.push(crab);
+    }
+}
+
+
 
 let octopi = [];
-let octopus = new Octopus(20, 60);
-octopi.push(octopus);
+for (let j = 0; j < 2; j++) {
+    for (let i = 0; i < 11; i++) {
+        let octopus = new Octopus(20 + i*15, 57 + j*12);
+        octopi.push(octopus);
+    }
+}
+
 
 let ufos = [];
-let ufo = new UFO(20, 80);
+let ufo = new UFO(7, 1);
 ufos.push(ufo);
 
 function animate() {
@@ -369,19 +385,26 @@ function shield(x, y) {
 
 // SQUID
 // x, y represents the left pixel of the top middle of each squid
-function Squid(x, y) {
+function Squid(x, y, j, i) {
     this.x = x,
     this.y = y,
     this.ident = "typeTwo",
     this.count = 0;
+    this.invader = `invader${j}${i}`,
     this.typeOne = function() {
         grid[`row${this.y + 1}`][`column${this.x}`].color = SIWhite;
         grid[`row${this.y + 1}`][`column${this.x+1 }`].color = SIWhite;
+        grid[`row${this.y + 1}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y + 1}`][`column${this.x+1 }`].invader = this.invader;
 
         grid[`row${this.y+2}`][`column${this.x-1}`].color = SIWhite;
         grid[`row${this.y+2}`][`column${this.x}`].color = SIWhite;
         grid[`row${this.y+2}`][`column${this.x+1}`].color = SIWhite;
         grid[`row${this.y+2}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+2}`].invader = this.invader;
 
         grid[`row${this.y + 3}`][`column${this.x-2}`].color = SIWhite;
         grid[`row${this.y + 3}`][`column${this.x-1}`].color = SIWhite;
@@ -389,6 +412,12 @@ function Squid(x, y) {
         grid[`row${this.y + 3}`][`column${this.x+1}`].color = SIWhite;
         grid[`row${this.y + 3}`][`column${this.x+2}`].color = SIWhite;
         grid[`row${this.y + 3}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y + 3}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y + 3}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y + 3}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y + 3}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y + 3}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y + 3}`][`column${this.x+3}`].invader = this.invader;
 
         grid[`row${this.y + 4}`][`column${this.x-3}`].color = SIWhite;
         grid[`row${this.y + 4}`][`column${this.x-2}`].color = SIWhite;
@@ -396,6 +425,12 @@ function Squid(x, y) {
         grid[`row${this.y + 4}`][`column${this.x+1}`].color = SIWhite;
         grid[`row${this.y + 4}`][`column${this.x+3}`].color = SIWhite;
         grid[`row${this.y + 4}`][`column${this.x+4}`].color = SIWhite;
+        grid[`row${this.y + 4}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y + 4}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y + 4}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y + 4}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y + 4}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y + 4}`][`column${this.x+4}`].invader = this.invader;
 
         grid[`row${this.y + 5}`][`column${this.x-3}`].color = SIWhite;
         grid[`row${this.y + 5}`][`column${this.x-2}`].color = SIWhite;
@@ -405,20 +440,38 @@ function Squid(x, y) {
         grid[`row${this.y + 5}`][`column${this.x+2}`].color = SIWhite;
         grid[`row${this.y + 5}`][`column${this.x+3}`].color = SIWhite;
         grid[`row${this.y + 5}`][`column${this.x+4}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y + 5}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y + 5}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y + 5}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y + 5}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y + 5}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y + 5}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y + 5}`][`column${this.x+4}`].invader = this.invader;
 
         
         grid[`row${this.y + 6}`][`column${this.x-1}`].color = SIWhite;
         grid[`row${this.y + 6}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y + 6}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y + 6}`][`column${this.x+2}`].invader = this.invader;
 
         grid[`row${this.y + 7}`][`column${this.x-2}`].color = SIWhite;
         grid[`row${this.y + 7}`][`column${this.x}`].color = SIWhite;
         grid[`row${this.y + 7}`][`column${this.x+1}`].color = SIWhite;
         grid[`row${this.y + 7}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y + 7}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y + 7}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y + 7}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y + 7}`][`column${this.x+3}`].invader = this.invader;
 
         grid[`row${this.y + 8}`][`column${this.x-3}`].color = SIWhite;
         grid[`row${this.y + 8}`][`column${this.x-1}`].color = SIWhite;
         grid[`row${this.y + 8}`][`column${this.x+2}`].color = SIWhite;
         grid[`row${this.y + 8}`][`column${this.x+4}`].color = SIWhite;
+        grid[`row${this.y + 8}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y + 8}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y + 8}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y + 8}`][`column${this.x+4}`].invader = this.invader;
     }
 
     this.typeTwo = function() {
@@ -429,6 +482,10 @@ function Squid(x, y) {
         grid[`row${this.y+2}`][`column${this.x}`].color = SIWhite;
         grid[`row${this.y+2}`][`column${this.x+1}`].color = SIWhite;
         grid[`row${this.y+2}`][`column${this.x+2}`].color = SIWhite;
+        grid[`row${this.y+2}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y+2}`][`column${this.x+2}`].invader = this.invader;
 
         grid[`row${this.y + 3}`][`column${this.x-2}`].color = SIWhite;
         grid[`row${this.y + 3}`][`column${this.x-1}`].color = SIWhite;
@@ -436,6 +493,12 @@ function Squid(x, y) {
         grid[`row${this.y + 3}`][`column${this.x+1}`].color = SIWhite;
         grid[`row${this.y + 3}`][`column${this.x+2}`].color = SIWhite;
         grid[`row${this.y + 3}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y + 3}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y + 3}`][`column${this.x-1}`].invader = this.invader;
+        grid[`row${this.y + 3}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y + 3}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y + 3}`][`column${this.x+2}`].invader = this.invader;
+        grid[`row${this.y + 3}`][`column${this.x+3}`].invader = this.invader;
 
         grid[`row${this.y + 4}`][`column${this.x-3}`].color = SIWhite;
         grid[`row${this.y + 4}`][`column${this.x-2}`].color = SIWhite;
@@ -443,6 +506,12 @@ function Squid(x, y) {
         grid[`row${this.y + 4}`][`column${this.x+1}`].color = SIWhite;
         grid[`row${this.y + 4}`][`column${this.x+3}`].color = SIWhite;
         grid[`row${this.y + 4}`][`column${this.x+4}`].color = SIWhite;
+        grid[`row${this.y + 4}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y + 4}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y + 4}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y + 4}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y + 4}`][`column${this.x+3}`].invader = this.invader;
+        grid[`row${this.y + 4}`][`column${this.x+4}`].invader = this.invader;
 
         grid[`row${this.y + 5}`][`column${this.x-3}`].color = SIWhite;
         grid[`row${this.y + 5}`][`column${this.x-2}`].color = SIWhite;
@@ -452,19 +521,34 @@ function Squid(x, y) {
         grid[`row${this.y + 5}`][`column${this.x+2}`].color = SIWhite;
         grid[`row${this.y + 5}`][`column${this.x+3}`].color = SIWhite;
         grid[`row${this.y + 5}`][`column${this.x+4}`].color = SIWhite;
+        grid[`row${this.y + 5}`][`column${this.x-3}`].invader =this.invader;
+        grid[`row${this.y + 5}`][`column${this.x-2}`].invader =this.invader;
+        grid[`row${this.y + 5}`][`column${this.x-1}`].invader =this.invader;
+        grid[`row${this.y + 5}`][`column${this.x}`].invader =this.invader;
+        grid[`row${this.y + 5}`][`column${this.x+1}`].invader =this.invader;
+        grid[`row${this.y + 5}`][`column${this.x+2}`].invader =this.invader;
+        grid[`row${this.y + 5}`][`column${this.x+3}`].invader =this.invader;
+        grid[`row${this.y + 5}`][`column${this.x+4}`].invader =this.invader;
 
         grid[`row${this.y + 6}`][`column${this.x-2}`].color = SIWhite;
         grid[`row${this.y + 6}`][`column${this.x}`].color = SIWhite;
         grid[`row${this.y + 6}`][`column${this.x+1}`].color = SIWhite;
         grid[`row${this.y + 6}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y + 6}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y + 6}`][`column${this.x}`].invader = this.invader;
+        grid[`row${this.y + 6}`][`column${this.x+1}`].invader = this.invader;
+        grid[`row${this.y + 6}`][`column${this.x+3}`].invader = this.invader;
 
         grid[`row${this.y + 7}`][`column${this.x-3}`].color = SIWhite;
         grid[`row${this.y + 7}`][`column${this.x+4}`].color = SIWhite;
+        grid[`row${this.y + 7}`][`column${this.x-3}`].invader = this.invader;
+        grid[`row${this.y + 7}`][`column${this.x+4}`].invader = this.invader;
         
         grid[`row${this.y + 8}`][`column${this.x-2}`].color = SIWhite;
         grid[`row${this.y + 8}`][`column${this.x+3}`].color = SIWhite;
+        grid[`row${this.y + 8}`][`column${this.x-2}`].invader = this.invader;
+        grid[`row${this.y + 8}`][`column${this.x+3}`].invader = this.invader;
     }
-
     this.impose = function() {
         if (this.count % 10 == 0 && this.count != 0) {
             switch (this.ident) {
@@ -877,4 +961,9 @@ function UFO(x,y) {
     this.impose = function() {
         this.typeOne();
     }
+}
+
+// Find an invader
+function findInvader(x, y, z) {
+    console.log(x[4]);
 }
